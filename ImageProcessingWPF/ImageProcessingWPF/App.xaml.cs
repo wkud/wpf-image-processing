@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageProcessingWPF.Views;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,9 +10,16 @@ using System.Windows;
 namespace ImageProcessingWPF
 {
     /// <summary>
-    /// Logika interakcji dla klasy App.xaml
+    /// Interaction logic for class App.xaml
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Window window = new MainWindow();
+            window.Show();
+
+            base.OnStartup(e);
+        }
     }
 }
