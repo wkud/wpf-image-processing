@@ -23,8 +23,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <views:FileView Grid.Row="1" Grid.Column="1"/>
-        
+        <views:FileView Grid.Row="1" Grid.Column="1" DataContext="{Binding FileViewModel}"/>
 
     </Grid>
 </Window>

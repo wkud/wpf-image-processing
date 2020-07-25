@@ -67,6 +67,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\LoadImageFromFileCommand.cs" />
+    <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\FileView.xaml.cs">
       <DependentUpon>FileView.xaml</DependentUpon>
