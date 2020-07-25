@@ -1,11 +1,4 @@
-﻿using ImageProcessingWPF.ViewModels;
-using ImageProcessingWPF.Views;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ImageProcessingWPF.Views;
 using System.Windows;
 
 namespace ImageProcessingWPF
@@ -18,7 +11,6 @@ namespace ImageProcessingWPF
         protected override void OnStartup(StartupEventArgs e)
         {
             Window window = new MainWindow();
-            window.DataContext = new MainViewModel();
             window.Show();
 
             base.OnStartup(e);

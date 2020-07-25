@@ -1,27 +1,18 @@
-﻿using ImageProcessingWPF.Views;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ImageProcessingWPF.Commands;
+using ImageProcessingWPF.Views;
+using System.Windows.Input;
 
 namespace ImageProcessingWPF.ViewModels
 {
-    class MainViewModel
+	class MainViewModel
     {
-		private FileViewModel _fileViewModel = new FileViewModel();
-		public FileViewModel FileViewModel
-		{
-			get { return _fileViewModel; }
-		}
+		public ICommand LoadImageFromFileCommand => new LoadImageFromFileCommand();
 
-		private FilterViewModel _filterViewModel = new FilterViewModel();
-		public FilterViewModel FilterViewModel
+		private MainWindow _window;
+		public MainViewModel(MainWindow window)
 		{
-			get { return _filterViewModel; }
+			_window = window;
 		}
-
 
 	}
 }
