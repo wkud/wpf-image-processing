@@ -16,6 +16,12 @@ namespace ImageProcessingWPF.ViewModels
 			get { return _fileViewModel; }
 		}
 
-		
-    }
+		private FilterViewModel _filterViewModel = new FilterViewModel();
+		public FilterViewModel FilterViewModel
+		{
+			get { return _filterViewModel; }
+		}
+
+
+	}
 }

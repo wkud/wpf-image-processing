@@ -24,6 +24,6 @@
         </Grid.RowDefinitions>
 
         <views:FileView Grid.Row="1" Grid.Column="1" DataContext="{Binding FileViewModel}"/>
-
+        <views:FilterView Grid.Row="2" Grid.Column="1" DataContext="{Binding FilterViewModel}"/>
     </Grid>
 </Window>
