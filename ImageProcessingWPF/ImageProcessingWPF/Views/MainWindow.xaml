@@ -35,6 +35,7 @@
 
         <!-- Gaussian blur setup -->
         <views:KernelBarView Grid.Row="2" Grid.Column="3" Visibility="Hidden" x:Name="KernelBarView" Margin="10,0"/>
+        <!-- Adaptive thresholding setup -->
         <views:ThresholdingParametersView Grid.Row="2" Grid.Column="3" Visibility="Visible" x:Name="ThresholdingParametersView" Margin="10,0"/>
 
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4">
