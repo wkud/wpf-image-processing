@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageProcessingWPF.Models;
+using System;
 using System.Windows.Input;
 
 namespace ImageProcessingWPF.ViewModels.Commands
@@ -7,6 +8,12 @@ namespace ImageProcessingWPF.ViewModels.Commands
     {
         public event EventHandler CanExecuteChanged;
 
+        private Action _loadImageDelegate;
+        public LoadImageFromFileCommand(Action loadImageDelegate)
+        {
+            _loadImageDelegate = loadImageDelegate;
+        }
+
         public bool CanExecute(object parameter)
         {
             return true;
@@ -14,7 +21,7 @@ namespace ImageProcessingWPF.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _loadImageDelegate.Invoke();
         }
     }
 }

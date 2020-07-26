@@ -1,16 +1,14 @@
-﻿using ImageProcessingWPF.ViewModels.Commands;
+﻿using ImageProcessingWPF.Models;
 using ImageProcessingWPF.Views;
-using System;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace ImageProcessingWPF.ViewModels
 {
     class MainViewModel
     {
-        public ICommand LoadImageFromFileCommand => new LoadImageFromFileCommand();
-        public BitmapImage LoadedImage => new BitmapImage(new Uri(@"F:\example photo.jpg", UriKind.Absolute));  //just a placeholder
+        private ImageLoader _imageLoader = new ImageLoader();
+        public ImageLoader ImageLoader => _imageLoader;
+
 
         KernelBarViewModel _kernelBarViewModel;
         ThresholdingParametersViewModel _thresholdingParametersView;

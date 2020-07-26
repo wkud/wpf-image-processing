@@ -25,8 +25,8 @@
 
         <!-- File loading -->
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Loaded file: " VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="FileName" Text="None" VerticalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="4" Content="Load Image" Command="{Binding LoadImageFromFileCommand}"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="FileName" Text="{Binding ImageLoader.LoadedFileName}" VerticalAlignment="Center"/>
+        <Button Grid.Row="1" Grid.Column="4" Content="Load Image" Command="{Binding ImageLoader.LoadImageFromFileCommand}"/>
 
         <!-- Filter setup -->
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Filter: "/>
@@ -44,9 +44,10 @@
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="{Binding LoadedImage}" Grid.Column="0"/>
+            <TextBlock Grid.Column="0" Text="Loaded image preview" HorizontalAlignment="Center" Foreground="Gray"/>
+            <Image Grid.Column="0" Source="{Binding ImageLoader.LoadedImage}"/>
             <!--<Image Source="{Binding FilteredImage}" Grid.Column="2"/>-->
-            <TextBlock Text="Photo after here" Grid.Column="2" HorizontalAlignment="Center" Foreground="Gray"/>
+            <TextBlock Text="Result preview" Grid.Column="2" HorizontalAlignment="Center" Foreground="Gray"/>
         </Grid>
     </Grid>
 </Window>
