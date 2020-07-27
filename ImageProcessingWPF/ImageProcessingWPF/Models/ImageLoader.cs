@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace ImageProcessingWPF.Models
 {
-    class ImageLoader : INotifyPropertyChanged, IImageProcessor
+    class ImageLoader : INotifyPropertyChanged, IImageProcessor //TODO remove inheritance from IImageProcessor after testing is done
     {
         public ICommand LoadImageFromFileCommand => new LoadImageFromFileCommand(LoadImage);
 
@@ -24,7 +24,7 @@ namespace ImageProcessingWPF.Models
             {
                 _loadedImage = value;
                 PropertyChanged.Notify(this, "LoadedImage");
-                ResultImageUpdated.Invoke();
+                ResultImageUpdated.Invoke(); //TODO Remove after testing is done
             }
         }
 
@@ -42,8 +42,8 @@ namespace ImageProcessingWPF.Models
             }
         }
 
-        public BitmapImage ResultImage => LoadedImage;
-        public event Action ResultImageUpdated;
+        public BitmapImage ResultImage => LoadedImage; //TODO Remove after testing is done
+        public event Action ResultImageUpdated; //TODO Remove after testing is done
 
         public event PropertyChangedEventHandler PropertyChanged;
 

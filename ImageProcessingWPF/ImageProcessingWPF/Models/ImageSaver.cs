@@ -2,7 +2,6 @@
 using ImageProcessingWPF.ViewModels.Commands;
 using Microsoft.Win32;
 using System.ComponentModel;
-using System.IO;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
