@@ -7,7 +7,13 @@ namespace ImageProcessingWPF.ViewModels
     class MainViewModel
     {
         private ImageLoader _imageLoader = new ImageLoader();
-        public ImageLoader ImageLoader => _imageLoader;
+        public ImageLoader ImageLoader => _imageLoader; 
+        
+        private FilterHandler _filterHandler = new FilterHandler();
+        public FilterHandler FilterHandler => _filterHandler;
+
+        private ImageSaver _imageSaver;
+        public ImageSaver ImageSaver => _imageSaver;
 
 
         KernelBarViewModel _kernelBarViewModel;
@@ -20,6 +26,8 @@ namespace ImageProcessingWPF.ViewModels
 
             _kernelBarViewModel = GetViewModel<KernelBarViewModel, KernelBarView>("KernelBarView");
             _thresholdingParametersView = GetViewModel<ThresholdingParametersViewModel, ThresholdingParametersView>("ThresholdingParametersView");
+
+            _imageSaver = new ImageSaver(_filterHandler);
         }
 
         private TViewModel GetViewModel<TViewModel, TView>(string viewControlNameInMainWindow) where TViewModel : class where TView : UserControl

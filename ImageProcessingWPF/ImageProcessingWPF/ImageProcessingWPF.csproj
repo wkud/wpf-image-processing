@@ -56,7 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ImageSaver.cs" />
+    <Compile Include="Models\FilterHandler.cs" />
+    <Compile Include="Models\IImageProcessor.cs" />
     <Compile Include="Models\ImageLoader.cs" />
+    <Compile Include="ViewModels\Commands\SaveResultImageToFileCommand.cs" />
     <Compile Include="ViewModels\ThresholdingParametersViewModel.cs" />
     <Compile Include="Views\ThresholdingParametersView.xaml.cs">
       <DependentUpon>ThresholdingParametersView.xaml</DependentUpon>

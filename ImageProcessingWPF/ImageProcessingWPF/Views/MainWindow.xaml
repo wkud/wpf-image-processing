@@ -20,6 +20,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
@@ -49,5 +50,7 @@
             <!--<Image Source="{Binding FilteredImage}" Grid.Column="2"/>-->
             <TextBlock Text="Result preview" Grid.Column="2" HorizontalAlignment="Center" Foreground="Gray"/>
         </Grid>
+
+        <Button Grid.Row="4" Grid.Column="4" Content="Save Result" Command="{Binding ImageSaver.SaveResultImageToFileCommand}"/>
     </Grid>
 </Window>
