@@ -14,8 +14,6 @@
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    <Style TargetType="ComboBox" BasedOn="{StaticResource fontStyling}"/>
-    <Style TargetType="ComboBoxItem" BasedOn="{StaticResource fontStyling}"/>
     <Style TargetType="Button" BasedOn="{StaticResource fontStyling}">
         <Setter Property="Padding" Value="15, 5" />
     </Style>

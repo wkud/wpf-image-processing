@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:ImageProcessingWPF.Views"
         mc:Ignorable="d" 
-        Title="Image Processing Application" Height="450" Width="800">
+        Title="Image Processing Application" Height="450" Width="830">
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -27,12 +27,13 @@
 
         <!-- File loading -->
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Loaded file: " VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="FileName" Text="{Binding ImageLoader.LoadedFileName}" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding ImageLoader.LoadedFileName}" VerticalAlignment="Center"/>
         <Button Grid.Row="1" Grid.Column="5" Content="Load Image" Command="{Binding ImageLoader.LoadImageFromFileCommand}"/>
 
         <!-- Filter setup -->
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Filter: "/>
-        <ComboBox Grid.Row="2" Grid.Column="2" Width="100" HorizontalAlignment="Left"/>
+        <ComboBox Grid.Row="2" Grid.Column="2" Width="210" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                  SelectedItem="{Binding FilterHandler.SelectedFilterType}" ItemsSource="{Binding FilterHandler.FilterTypes}"/>
         <Button Grid.Row="2" Grid.Column="5" Content="Execute Filter"/>
 
         <!-- Gaussian blur setup -->

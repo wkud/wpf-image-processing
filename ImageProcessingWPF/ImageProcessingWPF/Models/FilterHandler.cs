@@ -1,12 +1,13 @@
 ﻿using ImageProcessingWPF.Models.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Media.Imaging;
 
 namespace ImageProcessingWPF.Models
 {
     public enum FilterType
     {
-        None,
         GaussianBlur,
         AdaptiveThresholding
     }
@@ -17,11 +18,14 @@ namespace ImageProcessingWPF.Models
         public BitmapImage ResultImage => _resultImage;
         public event Action ResultImageUpdated;
 
-        private FilterType _filterType;
-        public FilterType FilterType
+        public IEnumerable<FilterType> FilterTypes => Enum.GetValues(typeof(FilterType)).Cast<FilterType>();
+
+
+        private FilterType _selectedFilterType;
+        public FilterType SelectedFilterType
         {
-            get { return _filterType; }
-            set { _filterType = value; }
+            get { return _selectedFilterType; }
+            set { _selectedFilterType = value; }
         }
     }
 }
