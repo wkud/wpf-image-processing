@@ -47,7 +47,7 @@ namespace ImageProcessingWPF.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void LoadImage()
+        private void LoadImage()
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Image files (*.jpg,*.jpeg,*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*";
