@@ -37,10 +37,15 @@
         <Button Grid.Row="2" Grid.Column="5" Content="Execute Filter"/>
 
         <!-- Gaussian blur setup -->
-        <views:KernelBarView Grid.Row="2" Grid.Column="3" Visibility="Visible" x:Name="KernelBarView" Margin="10,0,0,0"/>
+        <views:KernelBarView Grid.Row="2" Grid.Column="3" Margin="10,0,0,0" 
+                             DataContext="{Binding KernelBarViewModel}"
+                             Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibility}, FallbackValue=Visible}"/>
         <!-- Adaptive thresholding setup -->
-        <views:ThresholdingParametersView Grid.Row="2" Grid.Column="3" Visibility="Visible" x:Name="ThresholdingParametersView" Margin="10,0,0,0"/>
+        <views:ThresholdingParametersView Grid.Row="2" Grid.Column="3" Margin="10,0,0,0" 
+                             DataContext="{Binding ThresholdingParametersViewModel}"
+                             Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibility}, FallbackValue=Hidden}"/>
 
+        <!-- Photo preview -->
         <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

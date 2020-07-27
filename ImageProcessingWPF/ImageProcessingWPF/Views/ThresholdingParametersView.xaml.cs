@@ -11,7 +11,6 @@ namespace ImageProcessingWPF.Views
         public ThresholdingParametersView()
         {
             InitializeComponent();
-            DataContext = new ThresholdingParametersViewModel(this);
         }
     }
 }

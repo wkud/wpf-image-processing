@@ -1,10 +1,10 @@
-﻿using ImageProcessingWPF.Views;
+﻿using ImageProcessingWPF.Models;
 
 namespace ImageProcessingWPF.ViewModels
 {
-    class ThresholdingParametersViewModel :ViewModelBase<ThresholdingParametersView>
+    class ThresholdingParametersViewModel : ParametersViewModelBase
     {
-        public ThresholdingParametersViewModel(ThresholdingParametersView view) : base(view)
+        public ThresholdingParametersViewModel(FilterHandler filterHandler) : base(filterHandler, FilterType.AdaptiveThresholding)
         {
 
         }

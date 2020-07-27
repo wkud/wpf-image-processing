@@ -42,7 +42,7 @@ namespace ImageProcessingWPF.Models
                 }
                 catch (IOException exception)
                 {
-                    MessageBox. Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBoxExtension.ShowError(exception.Message);
                 }
             }
         }

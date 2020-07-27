@@ -1,14 +1,12 @@
 ﻿using ImageProcessingWPF.Models;
-using ImageProcessingWPF.Views;
-using System.Windows.Controls;
 
 namespace ImageProcessingWPF.ViewModels
 {
     class MainViewModel
     {
         private ImageLoader _imageLoader = new ImageLoader();
-        public ImageLoader ImageLoader => _imageLoader; 
-        
+        public ImageLoader ImageLoader => _imageLoader;
+
         private FilterHandler _filterHandler = new FilterHandler();
         public FilterHandler FilterHandler => _filterHandler;
 
@@ -16,25 +14,19 @@ namespace ImageProcessingWPF.ViewModels
         public ImageSaver ImageSaver => _imageSaver;
 
 
-        KernelBarViewModel _kernelBarViewModel;
-        ThresholdingParametersViewModel _thresholdingParametersView; 
+        private KernelBarViewModel _kernelBarViewModel;
+        public KernelBarViewModel KernelBarViewModel => _kernelBarViewModel;
 
-        private MainWindow _window;
-        public MainViewModel(MainWindow window)
+        private ThresholdingParametersViewModel _thresholdingParametersViewModel;
+        public ThresholdingParametersViewModel ThresholdingParametersViewModel => _thresholdingParametersViewModel;
+
+
+        public MainViewModel()
         {
-            _window = window;
-
-            _kernelBarViewModel = GetViewModel<KernelBarViewModel, KernelBarView>("KernelBarView");
-            _thresholdingParametersView = GetViewModel<ThresholdingParametersViewModel, ThresholdingParametersView>("ThresholdingParametersView");
+            _kernelBarViewModel = new KernelBarViewModel(_filterHandler);
+            _thresholdingParametersViewModel = new ThresholdingParametersViewModel(_filterHandler);
 
             _imageSaver = new ImageSaver(_filterHandler); 
         }
-
-        private TViewModel GetViewModel<TViewModel, TView>(string viewControlNameInMainWindow) where TViewModel : class where TView : UserControl
-        {
-            var view = _window.FindName(viewControlNameInMainWindow) as TView;
-            return view.DataContext as TViewModel;
-        }
-
     }
 }

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ImageProcessingWPF">
     <Application.Resources>
         <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Views/Styles/Common.xaml"/>
                 <ResourceDictionary Source="/Views/Styles/WaterMarkLabel.xaml"/>

@@ -60,7 +60,11 @@
     <Compile Include="Models\FilterHandler.cs" />
     <Compile Include="Models\ImageLoader.cs" />
     <Compile Include="Models\Interfaces\IImageProcessor.cs" />
+    <Compile Include="Utility\MessageBoxExtension.cs" />
+    <Compile Include="Utility\Observable.cs" />
+    <Compile Include="Utility\Observer.cs" />
     <Compile Include="ViewModels\Commands\SaveResultImageToFileCommand.cs" />
+    <Compile Include="ViewModels\ParametersViewModelBase.cs" />
     <Compile Include="ViewModels\ThresholdingParametersViewModel.cs" />
     <Compile Include="Views\ThresholdingParametersView.xaml.cs">
       <DependentUpon>ThresholdingParametersView.xaml</DependentUpon>
@@ -81,7 +85,6 @@
     <Compile Include="ViewModels\Commands\LoadImageFromFileCommand.cs" />
     <Compile Include="ViewModels\KernelBarViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\KernelBarView.xaml.cs">
       <DependentUpon>KernelBarView.xaml</DependentUpon>
     </Compile>

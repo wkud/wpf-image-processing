@@ -1,15 +1,10 @@
-﻿using ImageProcessingWPF.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ImageProcessingWPF.Models;
 
 namespace ImageProcessingWPF.ViewModels
 {
-    class KernelBarViewModel : ViewModelBase<KernelBarView>
+    class KernelBarViewModel : ParametersViewModelBase
     {
-        public KernelBarViewModel(KernelBarView view) : base(view)
+        public KernelBarViewModel(FilterHandler filterHandler) : base(filterHandler, FilterType.GaussianBlur)
         {
 
         }

@@ -1,4 +1,5 @@
 ﻿using ImageProcessingWPF.Models.Interfaces;
+using ImageProcessingWPF.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ImageProcessingWPF.Models
         AdaptiveThresholding
     }
 
-    class FilterHandler : IImageProcessor
+    class FilterHandler : Observable<FilterType>, IImageProcessor
     {
         private BitmapImage _resultImage;
         public BitmapImage ResultImage => _resultImage;
@@ -24,8 +25,15 @@ namespace ImageProcessingWPF.Models
         private FilterType _selectedFilterType;
         public FilterType SelectedFilterType
         {
-            get { return _selectedFilterType; }
-            set { _selectedFilterType = value; }
+            get
+            {
+                return _selectedFilterType;
+            }
+            set
+            {
+                _selectedFilterType = value;
+                NotifyAllObservers(value);
+            }
         }
     }
 }

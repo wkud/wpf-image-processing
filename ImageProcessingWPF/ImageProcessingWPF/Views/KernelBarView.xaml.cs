@@ -24,7 +24,6 @@ namespace ImageProcessingWPF.Views
         public KernelBarView()
         {
             InitializeComponent();
-            DataContext = new KernelBarViewModel(this);
         }
     }
 }
