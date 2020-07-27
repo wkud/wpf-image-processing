@@ -1,4 +1,4 @@
-﻿using ImageProcessingWPF.Models;
+﻿using ImageProcessingWPF.Models.Interfaces;
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
