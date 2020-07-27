@@ -19,6 +19,6 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Kernel: "/>
         <TextBlock Grid.Row="0" Grid.Column="1" Text="(kernel size)"/>
-        <Button Grid.Row="0" Grid.Column="2" Content="Manage Kernel" Margin="10,0"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="Manage Kernel" Margin="10,0,0,0"/>
     </Grid>
 </UserControl>

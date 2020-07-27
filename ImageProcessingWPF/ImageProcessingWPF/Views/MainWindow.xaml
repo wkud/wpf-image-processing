@@ -11,6 +11,7 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="20"/>
@@ -27,19 +28,19 @@
         <!-- File loading -->
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Loaded file: " VerticalAlignment="Center"/>
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" x:Name="FileName" Text="{Binding ImageLoader.LoadedFileName}" VerticalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="4" Content="Load Image" Command="{Binding ImageLoader.LoadImageFromFileCommand}"/>
+        <Button Grid.Row="1" Grid.Column="5" Content="Load Image" Command="{Binding ImageLoader.LoadImageFromFileCommand}"/>
 
         <!-- Filter setup -->
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Filter: "/>
         <ComboBox Grid.Row="2" Grid.Column="2" Width="100" HorizontalAlignment="Left"/>
-        <Button Grid.Row="2" Grid.Column="4" Content="Execute Filter"/>
+        <Button Grid.Row="2" Grid.Column="5" Content="Execute Filter"/>
 
         <!-- Gaussian blur setup -->
-        <views:KernelBarView Grid.Row="2" Grid.Column="3" Visibility="Hidden" x:Name="KernelBarView" Margin="10,0"/>
+        <views:KernelBarView Grid.Row="2" Grid.Column="3" Visibility="Visible" x:Name="KernelBarView" Margin="10,0,0,0"/>
         <!-- Adaptive thresholding setup -->
-        <views:ThresholdingParametersView Grid.Row="2" Grid.Column="3" Visibility="Visible" x:Name="ThresholdingParametersView" Margin="10,0"/>
+        <views:ThresholdingParametersView Grid.Row="2" Grid.Column="3" Visibility="Visible" x:Name="ThresholdingParametersView" Margin="10,0,0,0"/>
 
-        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4">
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
@@ -47,10 +48,10 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Loaded image preview" HorizontalAlignment="Center" Foreground="Gray"/>
             <Image Grid.Column="0" Source="{Binding ImageLoader.LoadedImage}"/>
-            <!--<Image Source="{Binding FilteredImage}" Grid.Column="2"/>-->
+            <!--<Image Source="{Binding FilterHandler.ResultImage}" Grid.Column="2"/>-->
             <TextBlock Text="Result preview" Grid.Column="2" HorizontalAlignment="Center" Foreground="Gray"/>
         </Grid>
 
-        <Button Grid.Row="4" Grid.Column="4" Content="Save Result" Command="{Binding ImageSaver.SaveResultImageToFileCommand}"/>
+        <Button Grid.Row="4" Grid.Column="5" Content="Save Result" Command="{Binding ImageSaver.SaveResultImageToFileCommand}"/>
     </Grid>
 </Window>
