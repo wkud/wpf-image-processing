@@ -27,7 +27,7 @@ namespace ImageProcessingWPF.Models
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.FileName = "result image";
-            dialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Png Image|*.png|Test|.badextension"; //TODO remove .badextension option after testing is done
+            dialog.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Png Image|*.png";
             if (dialog.ShowDialog() == true)
             {
                 try
