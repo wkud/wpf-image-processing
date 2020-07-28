@@ -4,9 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageProcessingWPF.Views"
-        mc:Ignorable="d"
-        Title="KernelDialogWindow" Height="450" Width="800">
+        mc:Ignorable="d" 
+        WindowStartupLocation="CenterOwner"
+        Title="Kernel Management" Height="234.953" Width="525.355">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Kernel size: "/>
+        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource WaterMarkStyle}" Tag="width" Width="100" Height="30" Margin="0,2.5,5,0"/>
+        <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource WaterMarkStyle}" Tag="height" Width="100" Height="30" Margin="0,2.5,5,0"/>
+
+        <Button Grid.Row="1" Grid.Column="5" Content="Save As"/>
+        <Button Grid.Row="2" Grid.Column="5" Content="Load"/>
+        <Button Grid.Row="4" Grid.Column="5" Content="OK"/>
         
+        <Grid x:Name="KernelGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="3" Margin="0,5,5,0">
+            
+        </Grid>
     </Grid>
 </Window>

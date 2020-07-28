@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="max deviation" FontSize="18" Width="150" Height="30" Margin="0,2.5,5,0"/>
-        <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource WaterMarkStyle}" Tag="mean area size" FontSize="18" Width="150" Height="30" Margin="0,2.5,0,0"/>
+        <TextBox Grid.Row="0" Grid.Column="0" Style="{StaticResource WaterMarkStyle}" Tag="max deviation" Width="150" Height="30" Margin="0,2.5,5,0"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource WaterMarkStyle}" Tag="mean area size" Width="150" Height="30" Margin="0,2.5,0,0"/>
     </Grid>
 </UserControl>
