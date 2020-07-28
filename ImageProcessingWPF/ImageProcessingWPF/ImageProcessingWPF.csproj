@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\DynamicMatrixHandler.cs" />
     <Compile Include="Models\ImageSaver.cs" />
     <Compile Include="Models\FilterHandler.cs" />
     <Compile Include="Models\ImageLoader.cs" />
@@ -68,17 +69,31 @@
     <Compile Include="ViewModels\KernelDialogViewModel.cs" />
     <Compile Include="ViewModels\ParametersViewModelBase.cs" />
     <Compile Include="ViewModels\ThresholdingParametersViewModel.cs" />
+    <Compile Include="Views\DynamicMatrixView.xaml.cs">
+      <DependentUpon>DynamicMatrixView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\KernelDialogWindow.xaml.cs">
       <DependentUpon>KernelDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KernelSizeSetupView.xaml.cs">
+      <DependentUpon>KernelSizeSetupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ThresholdingParametersView.xaml.cs">
       <DependentUpon>ThresholdingParametersView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DynamicMatrixView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\KernelBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\KernelDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KernelSizeSetupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
