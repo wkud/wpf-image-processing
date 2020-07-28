@@ -1,4 +1,5 @@
 ﻿using ImageProcessingWPF.Models;
+using ImageProcessingWPF.Views;
 
 namespace ImageProcessingWPF.ViewModels
 {
@@ -21,9 +22,9 @@ namespace ImageProcessingWPF.ViewModels
         public ThresholdingParametersViewModel ThresholdingParametersViewModel => _thresholdingParametersViewModel;
 
 
-        public MainViewModel()
+        public MainViewModel(MainWindow mainWindow)
         {
-            _kernelBarViewModel = new KernelBarViewModel(_filterHandler);
+            _kernelBarViewModel = new KernelBarViewModel(_filterHandler, mainWindow);
             _thresholdingParametersViewModel = new ThresholdingParametersViewModel(_filterHandler);
 
             _imageSaver = new ImageSaver(_filterHandler); 

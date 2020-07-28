@@ -63,13 +63,22 @@
     <Compile Include="Utility\MessageBoxExtension.cs" />
     <Compile Include="Utility\Observable.cs" />
     <Compile Include="Utility\Observer.cs" />
+    <Compile Include="ViewModels\Commands\ManageKernelCommand.cs" />
     <Compile Include="ViewModels\Commands\SaveResultImageToFileCommand.cs" />
+    <Compile Include="ViewModels\KernelDialogViewModel.cs" />
     <Compile Include="ViewModels\ParametersViewModelBase.cs" />
     <Compile Include="ViewModels\ThresholdingParametersViewModel.cs" />
+    <Compile Include="Views\KernelDialogWindow.xaml.cs">
+      <DependentUpon>KernelDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ThresholdingParametersView.xaml.cs">
       <DependentUpon>ThresholdingParametersView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\KernelBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KernelDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

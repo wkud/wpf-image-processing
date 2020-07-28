@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace ImageProcessingWPF.ViewModels
 {
-    abstract class ParametersViewModelBase : Observer<FilterType>, INotifyPropertyChanged //TODO If this class will remain simple, consider replacing it with an interface
+    abstract class ParametersViewModelBase : Observer<FilterType>, INotifyPropertyChanged
     {
         private bool _isVisible;
         public bool IsVisible

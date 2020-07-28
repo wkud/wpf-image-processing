@@ -12,7 +12,7 @@ namespace ImageProcessingWPF.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new MainViewModel(this);
         }
     }
 }
