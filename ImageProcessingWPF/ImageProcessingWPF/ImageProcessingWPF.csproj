@@ -64,6 +64,7 @@
     <Compile Include="Utility\MessageBoxExtension.cs" />
     <Compile Include="Utility\Observable.cs" />
     <Compile Include="Utility\Observer.cs" />
+    <Compile Include="Utility\ParsableTextBoxValidatorUtility.cs" />
     <Compile Include="ViewModels\Commands\ManageKernelCommand.cs" />
     <Compile Include="ViewModels\Commands\SaveResultImageToFileCommand.cs" />
     <Compile Include="ViewModels\KernelDialogViewModel.cs" />

@@ -5,8 +5,8 @@ namespace ImageProcessingWPF.ViewModels
 {
     class KernelDialogViewModel
     {
-        private DynamicMatrixHandler _matrixHandler;
-        public DynamicMatrixHandler MatrixHandler => _matrixHandler;
+        private DynamicMatrixViewModel _matrixHandler;
+        public DynamicMatrixViewModel MatrixHandler => _matrixHandler;
 
         public KernelDialogViewModel(MainWindow parentView)
         {
@@ -14,7 +14,7 @@ namespace ImageProcessingWPF.ViewModels
             dialogWindow.DataContext = this;
             dialogWindow.Owner = parentView;
 
-            _matrixHandler = new DynamicMatrixHandler();
+            _matrixHandler = new DynamicMatrixViewModel();
             dialogWindow.ShowDialog();
         }
 
