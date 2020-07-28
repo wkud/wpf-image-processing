@@ -6,10 +6,27 @@
         xmlns:local="clr-namespace:ImageProcessingWPF.Views"
         mc:Ignorable="d" 
         WindowStartupLocation="CenterOwner"
-        Title="Kernel Management" Height="234.953" Width="525.355">
+        Title="Kernel Management" Height="300" Width="600">
+    <Window.Resources>
+        <DataTemplate x:Key="CellTemplate">
+            <TextBox Text="{Binding Value, Mode=TwoWay}" FontSize="16" Width="30" Height="auto" Margin="0,2.5,5,0"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RowTemplate">
+            <ItemsControl ItemsSource="{Binding Cells}" ItemTemplate="{DynamicResource CellTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
@@ -27,15 +44,17 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Kernel size: "/>
-        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource WaterMarkStyle}" Tag="width" Width="100" Height="30" Margin="0,2.5,5,0"/>
-        <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource WaterMarkStyle}" Tag="height" Width="100" Height="30" Margin="0,2.5,5,0"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource WaterMarkStyle}" Tag="width" Text="{Binding Width}" Width="100" Height="30" Margin="0,2.5,5,0"/>
+        <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource WaterMarkStyle}" Tag="height" Text="{Binding Height}" Width="100" Height="30" Margin="0,2.5,5,0"/>
+        <Button Grid.Row="1" Grid.Column="4" Content="Set Size"/>
 
-        <Button Grid.Row="1" Grid.Column="5" Content="Save As"/>
-        <Button Grid.Row="2" Grid.Column="5" Content="Load"/>
-        <Button Grid.Row="4" Grid.Column="5" Content="OK"/>
-        
-        <Grid x:Name="KernelGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="3" Margin="0,5,5,0">
-            
-        </Grid>
+        <Button Grid.Row="1" Grid.Column="6" Content="Save As"/>
+        <Button Grid.Row="2" Grid.Column="6" Content="Load"/>
+        <Button Grid.Row="4" Grid.Column="6" Content="OK"/>
+
+
+        <ScrollViewer Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="3"  Margin="0,5,5,0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=Matrix}" ItemTemplate="{DynamicResource RowTemplate}"/>
+        </ScrollViewer>
     </Grid>
 </Window>
