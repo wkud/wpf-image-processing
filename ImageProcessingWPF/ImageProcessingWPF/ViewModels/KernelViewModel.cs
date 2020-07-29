@@ -1,7 +1,7 @@
-﻿using ImageProcessingWPF.Models;
-using ImageProcessingWPF.Models.FilterParameters;
+﻿using ImageProcessingWPF.Models.FilterParameters;
 using ImageProcessingWPF.Models.Interfaces;
 using ImageProcessingWPF.Utility;
+using ImageProcessingWPF.Utility.Validators;
 using System.ComponentModel;
 
 namespace ImageProcessingWPF.ViewModels
@@ -10,6 +10,7 @@ namespace ImageProcessingWPF.ViewModels
     {
         private const int minSize = 3;
         private const int maxSize = 20;
+        private IValidator<int> _rangeValidator = new IsWithinRangeValidator(minSize, maxSize);
 
         public Kernel Kernel { get; private set; }
 
@@ -20,7 +21,7 @@ namespace ImageProcessingWPF.ViewModels
             set
             {
                 var oldValue = _width;
-                _width = value.ParseAndValidate(_width, minSize, maxSize);
+                _width = value.ParseAndValidate(_width, _rangeValidator);
                 Kernel.OnWidthUpdated(oldValue, _width);
             }
         }
@@ -32,7 +33,7 @@ namespace ImageProcessingWPF.ViewModels
             set
             {
                 var oldValue = _height;
-                _height = value.ParseAndValidate(_height, minSize, maxSize);
+                _height = value.ParseAndValidate(_height, _rangeValidator);
                 Kernel.OnHeightChanged(oldValue, _height);
             }
         }
@@ -54,19 +55,19 @@ namespace ImageProcessingWPF.ViewModels
             Kernel = kernel;
             PropertyChanged.Notify(this, "Kernel");
 
-            if (!Kernel.Width.IsValid(minSize, maxSize))
+            if (!_rangeValidator.IsValid(Kernel.Width))
             {
                 MessageBoxExtension.ShowWarning($"Invalid kernel width={Kernel.Width}. The value has been changed to lie beetwen {minSize} and {maxSize}");
-                var correctedWidth = Kernel.Width.ClampToValidRange(minSize, maxSize);
+                var correctedWidth = _rangeValidator.MakeValid(Kernel.Width);
                 Kernel.OnWidthUpdated(Kernel.Width, correctedWidth);
             }
             _width = Kernel.Width;
             PropertyChanged.Notify(this, "Width");
 
-            if (!Kernel.Height.IsValid(minSize, maxSize))
+            if (!_rangeValidator.IsValid(Kernel.Height))
             {
                 MessageBoxExtension.ShowWarning($"Invalid kernel height={Kernel.Height}. The value has been changed to lie beetwen {minSize} and {maxSize}");
-                var correctedHeight = Kernel.Height.ClampToValidRange(minSize, maxSize);
+                var correctedHeight = _rangeValidator.MakeValid(Kernel.Height);
                 Kernel.OnHeightChanged(Kernel.Height, correctedHeight);
             }
             _height = Kernel.Height;

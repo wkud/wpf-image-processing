@@ -8,7 +8,7 @@ namespace ImageProcessingWPF.ViewModels
 {
     class KernelBarViewModel : ParametersViewModelBase
     {
-        public ICommand ManageKernelCommand => new ManageKernelCommand(this);
+        public ICommand ManageKernelCommand => new ManageKernelCommand(OpenKernelDialogWindow);
 
         private IFilterParametersContainer _parametersContainer;
         private MainWindow _mainWindow;
@@ -18,7 +18,7 @@ namespace ImageProcessingWPF.ViewModels
             _parametersContainer = filterHandler;
         }
 
-        public void OpenKernelWindowDialog()
+        private void OpenKernelDialogWindow()
         {
              new KernelDialogViewModel(_mainWindow, _parametersContainer);
         }

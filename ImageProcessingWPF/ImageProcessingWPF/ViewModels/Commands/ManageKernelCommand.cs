@@ -7,20 +7,20 @@ namespace ImageProcessingWPF.ViewModels.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        private KernelBarViewModel _barViewModel;
-        public ManageKernelCommand(KernelBarViewModel barViewModel)
+        private Action _openKernelDialogWindowDelegate;
+        public ManageKernelCommand(Action openKernelDialogWindowDelegate)
         {
-            _barViewModel = barViewModel;
+            _openKernelDialogWindowDelegate = openKernelDialogWindowDelegate;
         }
 
         public bool CanExecute(object parameter)
         {
-            return _barViewModel.IsVisible;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            _barViewModel.OpenKernelWindowDialog();
+            _openKernelDialogWindowDelegate.Invoke();
         }
     }
 }

@@ -56,12 +56,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\FilterParameters\ThresholdingParameters.cs" />
     <Compile Include="Models\Interfaces\IFilter.cs" />
     <Compile Include="Models\Interfaces\IFilterParameters.cs" />
     <Compile Include="Models\Interfaces\IFilterParametersContainer.cs" />
     <Compile Include="Models\Interfaces\IKernelContainer.cs" />
     <Compile Include="Models\FilterParameters\Kernel.cs" />
     <Compile Include="Models\KernelSerializer.cs" />
+    <Compile Include="Utility\Validators\IsPercentValidator.cs" />
+    <Compile Include="Utility\Validators\IValidator.cs" />
+    <Compile Include="Utility\Validators\IsWithinRangeValidator.cs" />
     <Compile Include="ViewModels\Commands\ApplyChangesAndCloseWindowCommand.cs" />
     <Compile Include="ViewModels\Commands\LoadKernelCommand.cs" />
     <Compile Include="ViewModels\Commands\SaveKernelCommand.cs" />

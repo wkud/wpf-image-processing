@@ -94,7 +94,7 @@ namespace ImageProcessingWPF.Models.FilterParameters
             get { return _value.ToString(); }
             set
             {
-                _value = value.ParseAndValidate(_value, -999, 999);
+                _value = value.Parse(_value);
             }
         }
         public Cell()
