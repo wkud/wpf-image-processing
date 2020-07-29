@@ -56,10 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Interfaces\IKernelContainer.cs" />
     <Compile Include="Models\Kernel.cs" />
     <Compile Include="Models\KernelSerializer.cs" />
+    <Compile Include="ViewModels\Commands\LoadKernelCommand.cs" />
     <Compile Include="ViewModels\Commands\SaveKernelCommand.cs" />
-    <Compile Include="ViewModels\DynamicMatrixViewModel.cs" />
+    <Compile Include="ViewModels\KernelViewModel.cs" />
     <Compile Include="Models\ImageSaver.cs" />
     <Compile Include="Models\FilterHandler.cs" />
     <Compile Include="Models\ImageLoader.cs" />

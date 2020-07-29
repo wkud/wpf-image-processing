@@ -1,13 +1,14 @@
 ﻿using ImageProcessingWPF.Models;
+using ImageProcessingWPF.Models.Interfaces;
 using ImageProcessingWPF.Utility;
+using System.ComponentModel;
 
 namespace ImageProcessingWPF.ViewModels
 {
-    class KernelViewModel
+    public class KernelViewModel : IKernelContainer, INotifyPropertyChanged
     {
         private const int minSize = 3;
         private const int maxSize = 20;
-
 
         public Kernel Kernel { get; private set; }
 
@@ -35,11 +36,28 @@ namespace ImageProcessingWPF.ViewModels
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public KernelViewModel(int initialWidth = 3, int initialHeight = 3)
         {
             _width = initialWidth;
             _height = initialHeight;
             Kernel = new Kernel(_width, _height);
+        }
+
+        public void SetDeserializedKernel(Kernel kernel)
+        {
+            if (kernel is null)
+                return;
+
+            Kernel = kernel;
+            PropertyChanged.Notify(this, "Kernel");
+
+            _width = Kernel.Width;
+            PropertyChanged.Notify(this, "Width");
+
+            _height = Kernel.Height;
+            PropertyChanged.Notify(this, "Height");
         }
     }
 }

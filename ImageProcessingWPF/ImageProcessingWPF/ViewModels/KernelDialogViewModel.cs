@@ -6,10 +6,10 @@ namespace ImageProcessingWPF.ViewModels
 {
     class KernelDialogViewModel
     {
-        private KernelViewModel _kernelViewModel;
-        public KernelViewModel KernelViewModel => _kernelViewModel;
+        public KernelViewModel KernelViewModel { get; private set; }
 
-        public ICommand SaveKernel => new SaveKernelCommand(KernelViewModel.Kernel);
+        public ICommand SaveKernelCommand => new SaveKernelCommand(KernelViewModel.Kernel);
+        public ICommand LoadKernelCommand => new LoadKernelCommand(KernelViewModel);
 
         public KernelDialogViewModel(MainWindow parentView)
         {
@@ -17,9 +17,8 @@ namespace ImageProcessingWPF.ViewModels
             dialogWindow.DataContext = this;
             dialogWindow.Owner = parentView;
 
-            _kernelViewModel = new KernelViewModel();
+            KernelViewModel = new KernelViewModel();
             dialogWindow.ShowDialog();
         }
-
     }
 }

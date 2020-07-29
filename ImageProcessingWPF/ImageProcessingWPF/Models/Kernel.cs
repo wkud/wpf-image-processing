@@ -18,6 +18,9 @@ namespace ImageProcessingWPF.Models
             }
         }
 
+        public int Width => Matrix[0].Cells.Count;
+        public int Height => Matrix.Count;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Kernel()
@@ -25,10 +28,8 @@ namespace ImageProcessingWPF.Models
 
         }
 
-        private int _width;
         public Kernel(int width, int height)
         {
-            _width = width;
             var matrix = new List<Row>();
             for (int i = 0; i < height; i++)
             {
@@ -57,7 +58,6 @@ namespace ImageProcessingWPF.Models
                     row.RemoveColumns(-difference);
                 }
             }
-            _width = newValue;
             Matrix = matrix;
         }
         public void OnHeightChanged(int oldValue, int newValue)
@@ -71,7 +71,7 @@ namespace ImageProcessingWPF.Models
             {
                 for (int i = 0; i < difference; i++)
                 {
-                    matrix.Add(new Row(_width));
+                    matrix.Add(new Row(Width));
                 }
             }
             else if (difference < 0)
@@ -87,7 +87,7 @@ namespace ImageProcessingWPF.Models
 
     public class Cell
     {
-        private int _value = 0;
+        private int _value;
         public string Value
         {
             get { return _value.ToString(); }
@@ -95,6 +95,14 @@ namespace ImageProcessingWPF.Models
             {
                 _value = value.ParseAndValidate(_value, -999, 999);
             }
+        }
+        public Cell()
+        {
+
+        }
+        public Cell(int value)
+        {
+            _value = value;
         }
     }
     public class Row
@@ -106,17 +114,14 @@ namespace ImageProcessingWPF.Models
         }
         public Row(int width)
         {
-            for (int x = 0; x < width; x++)
-            {
-                Cells.Add(new Cell());
-            }
+            AddColumns(width);
         }
 
         public void AddColumns(int count)
         {
             for (int i = 0; i < count; i++)
             {
-                Cells.Add(new Cell());
+                Cells.Add(new Cell(0));
             }
         }
         public void RemoveColumns(int count)

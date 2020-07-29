@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace ImageProcessingWPF.Utility
 {
@@ -12,6 +13,11 @@ namespace ImageProcessingWPF.Utility
         public static void ShowWarning(string message)
         {
             MessageBox.Show(message, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        public static void ShowAsError(this Exception exception)
+        {
+            ShowError(exception.Message);
         }
     }
 }
