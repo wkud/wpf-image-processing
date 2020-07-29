@@ -53,9 +53,21 @@ namespace ImageProcessingWPF.ViewModels
             Kernel = kernel;
             PropertyChanged.Notify(this, "Kernel");
 
+            if (!Kernel.Width.IsValid(minSize, maxSize))
+            {
+                MessageBoxExtension.ShowWarning($"Invalid kernel width={Kernel.Width}. The value has been changed to lie beetwen {minSize} and {maxSize}");
+                var correctedWidth = Kernel.Width.ClampToValidRange(minSize, maxSize);
+                Kernel.OnWidthUpdated(Kernel.Width, correctedWidth);
+            }
             _width = Kernel.Width;
             PropertyChanged.Notify(this, "Width");
 
+            if (!Kernel.Height.IsValid(minSize, maxSize))
+            {
+                MessageBoxExtension.ShowWarning($"Invalid kernel height={Kernel.Height}. The value has been changed to lie beetwen {minSize} and {maxSize}");
+                var correctedHeight = Kernel.Height.ClampToValidRange(minSize, maxSize);
+                Kernel.OnHeightChanged(Kernel.Height, correctedHeight);
+            }
             _height = Kernel.Height;
             PropertyChanged.Notify(this, "Height");
         }
