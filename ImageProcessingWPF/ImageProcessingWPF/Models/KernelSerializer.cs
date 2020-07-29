@@ -1,4 +1,5 @@
-﻿using ImageProcessingWPF.Utility;
+﻿using ImageProcessingWPF.Models.FilterParameters;
+using ImageProcessingWPF.Utility;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;

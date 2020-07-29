@@ -56,9 +56,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Interfaces\IFilter.cs" />
+    <Compile Include="Models\Interfaces\IFilterParameters.cs" />
+    <Compile Include="Models\Interfaces\IFilterParametersContainer.cs" />
     <Compile Include="Models\Interfaces\IKernelContainer.cs" />
-    <Compile Include="Models\Kernel.cs" />
+    <Compile Include="Models\FilterParameters\Kernel.cs" />
     <Compile Include="Models\KernelSerializer.cs" />
+    <Compile Include="ViewModels\Commands\ApplyChangesAndCloseWindowCommand.cs" />
     <Compile Include="ViewModels\Commands\LoadKernelCommand.cs" />
     <Compile Include="ViewModels\Commands\SaveKernelCommand.cs" />
     <Compile Include="ViewModels\KernelViewModel.cs" />
@@ -75,22 +79,18 @@
     <Compile Include="ViewModels\KernelDialogViewModel.cs" />
     <Compile Include="ViewModels\ParametersViewModelBase.cs" />
     <Compile Include="ViewModels\ThresholdingParametersViewModel.cs" />
-    <Compile Include="Views\KernelView.xaml.cs">
-      <DependentUpon>KernelView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\KernelDialogWindow.xaml.cs">
       <DependentUpon>KernelDialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\KernelSizeSetupView.xaml.cs">
       <DependentUpon>KernelSizeSetupView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\KernelView.xaml.cs">
+      <DependentUpon>KernelView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ThresholdingParametersView.xaml.cs">
       <DependentUpon>ThresholdingParametersView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\KernelView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\KernelBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\KernelSizeSetupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KernelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,6 +165,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Filters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

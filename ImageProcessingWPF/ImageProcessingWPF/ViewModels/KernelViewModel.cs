@@ -1,4 +1,5 @@
 ﻿using ImageProcessingWPF.Models;
+using ImageProcessingWPF.Models.FilterParameters;
 using ImageProcessingWPF.Models.Interfaces;
 using ImageProcessingWPF.Utility;
 using System.ComponentModel;

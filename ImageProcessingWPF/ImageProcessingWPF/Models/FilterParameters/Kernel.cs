@@ -1,11 +1,12 @@
-﻿using ImageProcessingWPF.Utility;
+﻿using ImageProcessingWPF.Models.Interfaces;
+using ImageProcessingWPF.Utility;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace ImageProcessingWPF.Models
+namespace ImageProcessingWPF.Models.FilterParameters
 {
-    public class Kernel : INotifyPropertyChanged
+    public class Kernel : INotifyPropertyChanged, IFilterParameters
     {
         private List<Row> _matrix;
         public List<Row> Matrix  //TODO explain why this is needed instead of List<List<string>>

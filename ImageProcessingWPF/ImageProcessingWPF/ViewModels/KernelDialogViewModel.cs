@@ -1,4 +1,5 @@
-﻿using ImageProcessingWPF.ViewModels.Commands;
+﻿using ImageProcessingWPF.Models.Interfaces;
+using ImageProcessingWPF.ViewModels.Commands;
 using ImageProcessingWPF.Views;
 using System.Windows.Input;
 
@@ -10,15 +11,21 @@ namespace ImageProcessingWPF.ViewModels
 
         public ICommand SaveKernelCommand => new SaveKernelCommand(KernelViewModel.Kernel);
         public ICommand LoadKernelCommand => new LoadKernelCommand(KernelViewModel);
+        public ICommand ApplyChangesAndCloseWindowCommand => new ApplyChangesAndCloseWindowCommand(_parametersContainer, _dialogWindow, KernelViewModel.Kernel);
 
-        public KernelDialogViewModel(MainWindow parentView)
+        private IFilterParametersContainer _parametersContainer;
+        private KernelDialogWindow _dialogWindow;
+        public KernelDialogViewModel(MainWindow parentView, IFilterParametersContainer parametersContainer)
         {
-            KernelDialogWindow dialogWindow = new KernelDialogWindow();
-            dialogWindow.DataContext = this;
-            dialogWindow.Owner = parentView;
+            _parametersContainer = parametersContainer;
+
+            _dialogWindow= new KernelDialogWindow();
+            _dialogWindow.DataContext = this;
+            _dialogWindow.Owner = parentView;
 
             KernelViewModel = new KernelViewModel();
-            dialogWindow.ShowDialog();
+            _dialogWindow.ShowDialog();
         }
+
     }
 }

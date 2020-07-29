@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace ImageProcessingWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy DynamicMatrixView.xaml
+    /// Logika interakcji dla klasy KernelView.xaml
     /// </summary>
     public partial class KernelView : UserControl
     {
