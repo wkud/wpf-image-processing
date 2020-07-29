@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ImageProcessingWPF.Views.DynamicMatrixView"
+﻿<UserControl x:Class="ImageProcessingWPF.Views.KernelView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,7 +24,7 @@
 
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Matrix}" ItemTemplate="{DynamicResource RowTemplate}"/>
+            <ItemsControl ItemsSource="{Binding Kernel.Matrix}" ItemTemplate="{DynamicResource RowTemplate}"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

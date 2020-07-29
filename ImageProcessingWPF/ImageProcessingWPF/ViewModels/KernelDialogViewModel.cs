@@ -1,12 +1,15 @@
-﻿using ImageProcessingWPF.Models;
+﻿using ImageProcessingWPF.ViewModels.Commands;
 using ImageProcessingWPF.Views;
+using System.Windows.Input;
 
 namespace ImageProcessingWPF.ViewModels
 {
     class KernelDialogViewModel
     {
-        private DynamicMatrixViewModel _matrixHandler;
-        public DynamicMatrixViewModel MatrixHandler => _matrixHandler;
+        private KernelViewModel _kernelViewModel;
+        public KernelViewModel KernelViewModel => _kernelViewModel;
+
+        public ICommand SaveKernel => new SaveKernelCommand(KernelViewModel.Kernel);
 
         public KernelDialogViewModel(MainWindow parentView)
         {
@@ -14,7 +17,7 @@ namespace ImageProcessingWPF.ViewModels
             dialogWindow.DataContext = this;
             dialogWindow.Owner = parentView;
 
-            _matrixHandler = new DynamicMatrixViewModel();
+            _kernelViewModel = new KernelViewModel();
             dialogWindow.ShowDialog();
         }
 

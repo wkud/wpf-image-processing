@@ -18,9 +18,9 @@ namespace ImageProcessingWPF.Views
     /// <summary>
     /// Logika interakcji dla klasy DynamicMatrixView.xaml
     /// </summary>
-    public partial class DynamicMatrixView : UserControl
+    public partial class KernelView : UserControl
     {
-        public DynamicMatrixView()
+        public KernelView()
         {
             InitializeComponent();
         }
