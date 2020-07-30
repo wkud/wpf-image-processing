@@ -40,6 +40,16 @@ namespace ImageProcessingWPF.Models
         public IEnumerable<FilterType> FilterTypes => Enum.GetValues(typeof(FilterType)).Cast<FilterType>();
         public ICommand ExecuteFilterCommand => new ExecuteFilterCommand(ExecuteFilter, _imageloader);
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                _isLoading = value;
+                PropertyChanged.Notify(this, "IsLoading");
+            }
+        }
 
         private FilterType _selectedFilterType;
         public FilterType SelectedFilterType
@@ -79,7 +89,11 @@ namespace ImageProcessingWPF.Models
         public FilterHandler(IImageLoader imageLoader)
         {
             _imageloader = imageLoader;
-            _imageloader.ImageLoaded += () => { PropertyChanged.Notify(this, "ExecuteFilterCommand"); };
+            _imageloader.ImageLoaded += () =>
+            {
+                PropertyChanged.Notify(this, "ExecuteFilterCommand");
+                ResultImage = null;
+            };
         }
 
         public void ExecuteFilter()
@@ -90,11 +104,11 @@ namespace ImageProcessingWPF.Models
 
             ResultImage = null;
 
-            Application.UseWaitCursor = true;
+            IsLoading = true;
             Task.Run(() =>
             {
                 ResultImage = filter.Execute(_imageloader.LoadedImage.ToBitmap(), Parameters).ToBitmapImage(ImageFormat.Png);
-                Application.UseWaitCursor = false;
+                IsLoading = false;
             });
         }
 
