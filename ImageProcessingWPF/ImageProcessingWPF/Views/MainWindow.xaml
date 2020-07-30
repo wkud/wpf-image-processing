@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:ImageProcessingWPF.Views"
         mc:Ignorable="d" 
+        WindowStartupLocation="CenterScreen"
         Title="Image Processing Application" Height="450" Width="830">
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
@@ -46,7 +47,7 @@
                              Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibility}, FallbackValue=Hidden}"/>
 
         <!-- Photo preview -->
-        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5">
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Margin="0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
@@ -63,6 +64,13 @@
             <Image Source="{Binding FilterHandler.ResultImage}" Grid.Column="2"/>
         </Grid>
 
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="Quality:"/>
+        <Slider Grid.Row="4" Grid.Column="2" VerticalAlignment="Center"
+                Value="{Binding FilterHandler.SampleCountPerDimension}" x:Name="sampleSlider"
+                Minimum="100" Maximum="1000" TickFrequency="100" 
+                IsSnapToTickEnabled="True" TickPlacement="BottomRight"/>
+        <TextBlock Grid.Row="4" Grid.Column="3" Margin="5" Text="{Binding FilterHandler.TotalSampleCount}"/>
+        
         <Button Grid.Row="4" Grid.Column="5" Content="Save Result" Command="{Binding ImageSaver.SaveResultImageToFileCommand}"/>
     </Grid>
 </Window>

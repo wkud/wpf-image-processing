@@ -39,6 +39,18 @@ namespace ImageProcessingWPF.Models
         public IEnumerable<FilterType> FilterTypes => Enum.GetValues(typeof(FilterType)).Cast<FilterType>();
         public ICommand ExecuteFilterCommand => new ExecuteFilterCommand(ExecuteFilter, _imageloader);
 
+        public string TotalSampleCount => $"{_sampleCountPerDimension * _sampleCountPerDimension} samples";
+        private int _sampleCountPerDimension = 100;
+        public int SampleCountPerDimension
+        {
+            get { return _sampleCountPerDimension; }
+            set
+            {
+                _sampleCountPerDimension = value;
+                PropertyChanged.Notify(this, "TotalSampleCount");
+            }
+        }
+
         private bool _isLoading;
         public bool IsLoading
         {
@@ -49,6 +61,8 @@ namespace ImageProcessingWPF.Models
                 PropertyChanged.Notify(this, "IsLoading");
             }
         }
+
+
 
         private FilterType _selectedFilterType;
         public FilterType SelectedFilterType
@@ -105,7 +119,7 @@ namespace ImageProcessingWPF.Models
 
             IsLoading = true;
             var inputImage = _imageloader.LoadedImage.ToBitmap();
-            var samplingScale = (int)Math.Ceiling(Math.Max(inputImage.Width, inputImage.Height) * 1.0 / 500);
+            var samplingScale = (int)Math.Ceiling(Math.Max(inputImage.Width, inputImage.Height) * 1.0 / SampleCountPerDimension);
             Task.Run(() =>
             {
                 ResultImage = filter.Execute(Parameters, inputImage.ScaleDown(samplingScale))
