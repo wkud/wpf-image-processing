@@ -37,7 +37,7 @@ namespace ImageProcessingWPF.Models
         public event PropertyChangedEventHandler PropertyChanged;
 
         public IEnumerable<FilterType> FilterTypes => Enum.GetValues(typeof(FilterType)).Cast<FilterType>();
-        public ICommand ExecuteFilterCommand => new ExecuteFilterCommand(ExecuteFilter, _imageloader);
+        public ICommand ExecuteFilterCommand => new ExecuteFilterCommand(ExecuteFilter, _imageloader, IsLoading);
 
         public string TotalSampleCount => $"{_sampleCountPerDimension * _sampleCountPerDimension} samples";
         private int _sampleCountPerDimension = 100;
@@ -58,11 +58,10 @@ namespace ImageProcessingWPF.Models
             set
             {
                 _isLoading = value;
-                PropertyChanged.Notify(this, "IsLoading");
+                PropertyChanged.Notify(this, "IsLoading"); 
+                PropertyChanged.Notify(this, "ExecuteFilterCommand"); 
             }
         }
-
-
 
         private FilterType _selectedFilterType;
         public FilterType SelectedFilterType

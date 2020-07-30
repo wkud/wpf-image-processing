@@ -8,18 +8,19 @@ namespace ImageProcessingWPF.ViewModels.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-
-        Action _executeFilterDelegate;
-        IImageLoader _imageLoader;
-        public ExecuteFilterCommand(Action executeFilterDelegate, IImageLoader imageLoader)
+        private Action _executeFilterDelegate;
+        private IImageLoader _imageLoader;
+        private bool _isLoading;
+        public ExecuteFilterCommand(Action executeFilterDelegate, IImageLoader imageLoader, bool isLoading)
         {
             _executeFilterDelegate = executeFilterDelegate;
             _imageLoader = imageLoader;
+            _isLoading = isLoading;
         }
 
         public bool CanExecute(object parameter)
         {
-            return _imageLoader.LoadedImage != null;
+            return _imageLoader.LoadedImage != null && !_isLoading;
         }
 
         public void Execute(object parameter)
