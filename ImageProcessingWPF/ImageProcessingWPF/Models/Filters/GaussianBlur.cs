@@ -17,7 +17,7 @@ namespace ImageProcessingWPF.Models.Filters
         private int _kernelTotalValue;
 
         private Bitmap _input;
-        public Bitmap Execute(Bitmap inputImage, IFilterParameters parameters)
+        public Bitmap Execute(IFilterParameters parameters, Bitmap inputImage)
         {
             var kernel = (parameters as Kernel).ToArray();
             _input = inputImage;

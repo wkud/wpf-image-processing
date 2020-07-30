@@ -5,7 +5,7 @@ namespace ImageProcessingWPF.Models.Filters
 {
     class AdaptiveThresholding : IFilter
     {
-        public Bitmap Execute(Bitmap inputImage, IFilterParameters parameters)
+        public Bitmap Execute(IFilterParameters parameters, Bitmap inputImage)
         {
             throw new System.NotImplementedException();
         }
