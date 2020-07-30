@@ -40,11 +40,20 @@ namespace ImageProcessingWPF.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public KernelViewModel(int initialWidth = 3, int initialHeight = 3)
+        public KernelViewModel(Kernel kernel)
         {
-            _width = initialWidth;
-            _height = initialHeight;
-            Kernel = new Kernel(_width, _height);
+            if (kernel != null)
+            {
+                _width = kernel.Width;
+                _height = kernel.Height;
+                Kernel = kernel;
+            }
+            else
+            {
+                _width = minSize;
+                _height = minSize;
+                Kernel = new Kernel(_width, _height);
+            }
         }
 
         public void SetDeserializedKernel(Kernel kernel)

@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,16 +58,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\FilterParameters\ThresholdingParameters.cs" />
+    <Compile Include="Models\Filters\AdaptiveThresholding.cs" />
+    <Compile Include="Models\Filters\GaussianBlur.cs" />
     <Compile Include="Models\Interfaces\IFilter.cs" />
     <Compile Include="Models\Interfaces\IFilterParameters.cs" />
     <Compile Include="Models\Interfaces\IFilterParametersContainer.cs" />
+    <Compile Include="Models\Interfaces\IImageLoader.cs" />
     <Compile Include="Models\Interfaces\IKernelContainer.cs" />
     <Compile Include="Models\FilterParameters\Kernel.cs" />
     <Compile Include="Models\KernelSerializer.cs" />
+    <Compile Include="Utility\BitmapExtension.cs" />
     <Compile Include="Utility\Validators\IsPercentValidator.cs" />
     <Compile Include="Utility\Validators\IValidator.cs" />
     <Compile Include="Utility\Validators\IsWithinRangeValidator.cs" />
     <Compile Include="ViewModels\Commands\ApplyChangesAndCloseWindowCommand.cs" />
+    <Compile Include="ViewModels\Commands\ExecuteFilterCommand.cs" />
     <Compile Include="ViewModels\Commands\LoadKernelCommand.cs" />
     <Compile Include="ViewModels\Commands\SaveKernelCommand.cs" />
     <Compile Include="ViewModels\KernelViewModel.cs" />
@@ -169,8 +175,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Filters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

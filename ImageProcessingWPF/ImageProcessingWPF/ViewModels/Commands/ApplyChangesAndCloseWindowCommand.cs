@@ -10,12 +10,12 @@ namespace ImageProcessingWPF.ViewModels.Commands
     {
         private IFilterParametersContainer _parametersContainer;
         private KernelDialogWindow _dialogWindow;
-        private Kernel _kernel;
-        public ApplyChangesAndCloseWindowCommand(IFilterParametersContainer parametersContainer, KernelDialogWindow dialogWindow, Kernel kernel)
+        private IKernelContainer _kernelContainer;
+        public ApplyChangesAndCloseWindowCommand(IFilterParametersContainer parametersContainer, KernelDialogWindow dialogWindow, IKernelContainer kernelContainer)
         {
             _parametersContainer = parametersContainer;
             _dialogWindow = dialogWindow;
-            _kernel = kernel;
+            _kernelContainer = kernelContainer;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -27,7 +27,7 @@ namespace ImageProcessingWPF.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            _parametersContainer.SetFilterParameters(_kernel);
+            _parametersContainer.Parameters = _kernelContainer.Kernel;
             _dialogWindow.Close();
         }
     }

@@ -5,29 +5,21 @@ namespace ImageProcessingWPF.ViewModels
 {
     class MainViewModel
     {
-        private ImageLoader _imageLoader = new ImageLoader();
-        public ImageLoader ImageLoader => _imageLoader;
+        public ImageLoader ImageLoader { get; private set; }
+        public FilterHandler FilterHandler { get; private set; }
+        public ImageSaver ImageSaver { get; private set; }
 
-        private FilterHandler _filterHandler = new FilterHandler();
-        public FilterHandler FilterHandler => _filterHandler;
-
-        private ImageSaver _imageSaver;
-        public ImageSaver ImageSaver => _imageSaver;
-
-
-        private KernelBarViewModel _kernelBarViewModel;
-        public KernelBarViewModel KernelBarViewModel => _kernelBarViewModel;
-
-        private ThresholdingParametersViewModel _thresholdingParametersViewModel;
-        public ThresholdingParametersViewModel ThresholdingParametersViewModel => _thresholdingParametersViewModel;
-
+        public KernelBarViewModel KernelBarViewModel { get; private set; }
+        public ThresholdingParametersViewModel ThresholdingParametersViewModel { get; private set; }
 
         public MainViewModel(MainWindow mainWindow)
         {
-            _kernelBarViewModel = new KernelBarViewModel(_filterHandler, mainWindow);
-            _thresholdingParametersViewModel = new ThresholdingParametersViewModel(_filterHandler);
+            ImageLoader = new ImageLoader();
+            FilterHandler = new FilterHandler(ImageLoader);
+            ImageSaver = new ImageSaver(FilterHandler);
 
-            _imageSaver = new ImageSaver(_filterHandler); 
+            KernelBarViewModel = new KernelBarViewModel(FilterHandler, mainWindow);
+            ThresholdingParametersViewModel = new ThresholdingParametersViewModel(FilterHandler);
         }
     }
 }

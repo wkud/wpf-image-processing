@@ -2,6 +2,6 @@
 {
     interface IFilterParametersContainer
     {
-        void SetFilterParameters(IFilterParameters parameters);
+        IFilterParameters Parameters { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ImageProcessingWPF.Utility;
+﻿using ImageProcessingWPF.Models.Interfaces;
+using ImageProcessingWPF.Utility;
 using ImageProcessingWPF.ViewModels.Commands;
 using System;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace ImageProcessingWPF.Models
 {
-    class ImageLoader : INotifyPropertyChanged
+    class ImageLoader : INotifyPropertyChanged, IImageLoader
     {
         public ICommand LoadImageFromFileCommand => new LoadImageFromFileCommand(LoadImage);
 
@@ -24,6 +25,7 @@ namespace ImageProcessingWPF.Models
             {
                 _loadedImage = value;
                 PropertyChanged.Notify(this, "LoadedImage");
+                ImageLoaded.Invoke();
             }
         }
 
@@ -41,6 +43,7 @@ namespace ImageProcessingWPF.Models
             }
         }
 
+        public event Action ImageLoaded;
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void LoadImage()

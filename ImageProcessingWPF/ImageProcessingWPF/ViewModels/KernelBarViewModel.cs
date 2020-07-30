@@ -12,6 +12,8 @@ namespace ImageProcessingWPF.ViewModels
 
         private IFilterParametersContainer _parametersContainer;
         private MainWindow _mainWindow;
+
+        private KernelDialogViewModel _dialogModel;
         public KernelBarViewModel(FilterHandler filterHandler, MainWindow mainWindow) : base(filterHandler, FilterType.GaussianBlur)
         {
             _mainWindow = mainWindow;
@@ -20,7 +22,10 @@ namespace ImageProcessingWPF.ViewModels
 
         private void OpenKernelDialogWindow()
         {
-             new KernelDialogViewModel(_mainWindow, _parametersContainer);
+            if (_dialogModel is null)
+                _dialogModel = new KernelDialogViewModel(_mainWindow, _parametersContainer);
+
+            _dialogModel.ShowWindow();
         }
     }
 }

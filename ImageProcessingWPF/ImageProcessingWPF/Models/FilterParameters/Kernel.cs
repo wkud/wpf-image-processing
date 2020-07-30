@@ -84,6 +84,23 @@ namespace ImageProcessingWPF.Models.FilterParameters
             }
             Matrix = matrix;
         }
+
+        public int[,] ToArray()
+        {
+            var array = new int[Width, Height];
+            int y = 0;
+            foreach (var row in Matrix)
+            {
+                int x = 0;
+                foreach (var cell in row.Cells)
+                {
+                    array[x, y] = cell.GetIntValue();
+                    x++;
+                }
+                y++;
+            }
+            return array;
+        }
     }
 
     public class Cell
@@ -105,6 +122,7 @@ namespace ImageProcessingWPF.Models.FilterParameters
         {
             _value = value;
         }
+        public int GetIntValue() => _value;
     }
     public class Row
     {
@@ -122,7 +140,7 @@ namespace ImageProcessingWPF.Models.FilterParameters
         {
             for (int i = 0; i < count; i++)
             {
-                Cells.Add(new Cell(0));
+                Cells.Add(new Cell(1));
             }
         }
         public void RemoveColumns(int count)

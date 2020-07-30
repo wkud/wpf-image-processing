@@ -1,7 +1,8 @@
-﻿namespace ImageProcessingWPF.Models.Interfaces
+﻿using System.Drawing;
+namespace ImageProcessingWPF.Models.Interfaces
 {
     interface IFilter
     {
-        void Execute(IFilterParameters parameters);
+        Bitmap Execute(Bitmap inputImage, IFilterParameters parameters);
     }
 }

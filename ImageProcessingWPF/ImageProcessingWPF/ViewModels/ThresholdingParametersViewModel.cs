@@ -20,7 +20,7 @@ namespace ImageProcessingWPF.ViewModels
             {
                 _maxDeviation = value.ParseAndValidate(_maxDeviation, _percentValidator);
                 _parameters.MaxDeviation = _maxDeviation;
-                _parametersContainer.SetFilterParameters(_parameters);
+                _parametersContainer.Parameters = _parameters;
             }
         }
 
@@ -32,7 +32,7 @@ namespace ImageProcessingWPF.ViewModels
             {
                 _meanAreaSize = value.ParseAndValidate(_meanAreaSize, _rangeValidator);
                 _parameters.MeanAreaSize = _meanAreaSize;
-                _parametersContainer.SetFilterParameters(_parameters);
+                _parametersContainer.Parameters = _parameters;
             }
         }
 
