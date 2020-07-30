@@ -57,7 +57,7 @@ namespace ImageProcessingWPF.Models.Filters
                     var r = sum[0] / _kernelTotalValue;
                     var g = sum[1] / _kernelTotalValue;
                     var b = sum[2] / _kernelTotalValue;
-                    var color = Color.FromArgb((byte)r, (byte)g, (byte)b);
+                    var color = Color.FromArgb(r, g, b);
                     output.SetPixel(x, y, color);
                 }
             }

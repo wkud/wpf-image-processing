@@ -3,6 +3,6 @@ namespace ImageProcessingWPF.Models.Interfaces
 {
     interface IFilter
     {
-        Bitmap Execute(Bitmap inputImage, IFilterParameters parameters);
+        Bitmap Execute(IFilterParameters parameters, Bitmap inputImage);
     }
 }

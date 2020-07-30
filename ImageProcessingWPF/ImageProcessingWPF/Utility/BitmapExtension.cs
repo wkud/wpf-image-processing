@@ -36,5 +36,18 @@ namespace ImageProcessingWPF.Utility
                 return bitmapImage;
             }
         }
+
+        public static Bitmap ScaleDown(this Bitmap image, double scale = 1)
+        {
+            int height = (int)(image.Height / scale);
+            int width = (int)(image.Width / scale);
+            return new Bitmap(image, width, height);
+        }
+        public static Bitmap ScaleUp(this Bitmap image, double scale = 1)
+        {
+            int height = (int)(image.Height * scale);
+            int width = (int)(image.Width * scale);
+            return new Bitmap(image, width, height);
+        }
     }
 }

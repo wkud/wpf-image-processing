@@ -9,7 +9,6 @@ using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -105,9 +104,13 @@ namespace ImageProcessingWPF.Models
             ResultImage = null;
 
             IsLoading = true;
+            var inputImage = _imageloader.LoadedImage.ToBitmap();
+            var samplingScale = (int)Math.Ceiling(Math.Max(inputImage.Width, inputImage.Height) * 1.0 / 500);
             Task.Run(() =>
             {
-                ResultImage = filter.Execute(_imageloader.LoadedImage.ToBitmap(), Parameters).ToBitmapImage(ImageFormat.Png);
+                ResultImage = filter.Execute(Parameters, inputImage.ScaleDown(samplingScale))
+                    .ScaleUp(samplingScale)
+                    .ToBitmapImage(ImageFormat.Jpeg);
                 IsLoading = false;
             });
         }
