@@ -11,7 +11,7 @@ namespace ImageProcessingWPF.Utility.Validators
         }
         public string GetInvalidInfoMessage()
         {
-            return $"Value must be equal to or greater than {_threshold}";
+            return $"Value must be equal to or greater than {_threshold}.";
         }
 
         public bool IsValid(int value)

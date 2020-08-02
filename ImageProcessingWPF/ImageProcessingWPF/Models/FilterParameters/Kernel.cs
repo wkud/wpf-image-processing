@@ -1,5 +1,6 @@
 ﻿using ImageProcessingWPF.Models.Interfaces;
 using ImageProcessingWPF.Utility;
+using ImageProcessingWPF.Utility.Validators;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -101,17 +102,30 @@ namespace ImageProcessingWPF.Models.FilterParameters
             }
             return array;
         }
+        public int GetSum()
+        {
+            var sum = 0;
+            foreach (var row in Matrix)
+            {
+                foreach (var cell in row.Cells)
+                {
+                    sum += cell.GetIntValue();
+                }
+            }
+            return sum;
+        }
     }
 
     public class Cell
     {
+        private IValidator<int> _validator = new IsEqualOrGreaterValidator(0);
         private int _value;
         public string Value
         {
             get { return _value.ToString(); }
             set
             {
-                _value = value.Parse(_value);
+                _value = value.ParseAndValidate(_value, _validator);
             }
         }
         public Cell()
