@@ -1,4 +1,5 @@
 ﻿using ImageProcessingWPF.Models.FilterParameters;
+using ImageProcessingWPF.Utility.Validators;
 using System;
 using System.Drawing;
 
@@ -12,6 +13,9 @@ namespace ImageProcessingWPF.Models.Filters
         //offset from center of kernel to it's left top corner
         private int _offsetX;
         private int _offsetY;
+
+        private IValidator<int> _indexValidatorX;
+        private IValidator<int> _indexValidatorY;
 
         private int _kernelTotalValue;
 
@@ -36,6 +40,9 @@ namespace ImageProcessingWPF.Models.Filters
                     _kernelTotalValue += kernelArray[i, j];
                 }
             }
+
+            _indexValidatorX = new IsWithinRangeValidator(0, _input.Width - 1);
+            _indexValidatorY = new IsWithinRangeValidator(0, _input.Height - 1);
 
             Bitmap output = new Bitmap(taskWidth, _input.Height);
             for (int x = 0; x < taskWidth; x++)
@@ -67,14 +74,9 @@ namespace ImageProcessingWPF.Models.Filters
             var indexX = x - _offsetX + i;
             var indexY = y - _offsetY + j;
 
-            try
-            {
-                return _input.GetPixel(indexX, indexY);
-            }
-            catch (ArgumentOutOfRangeException) //TODO change edge handling for validators
-            {
-                return _input.GetPixel(x, y);
-            }
+            indexX = _indexValidatorX.MakeValid(indexX);
+            indexY = _indexValidatorY.MakeValid(indexY);
+            return _input.GetPixel(indexX, indexY);
         }
     }
 }
