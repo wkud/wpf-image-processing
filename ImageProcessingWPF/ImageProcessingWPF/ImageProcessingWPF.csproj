@@ -60,7 +60,8 @@
     <Compile Include="Models\FilterParameters\ThresholdingParameters.cs" />
     <Compile Include="Models\Filters\AdaptiveThresholding.cs" />
     <Compile Include="Models\Filters\GaussianBlur.cs" />
-    <Compile Include="Models\Interfaces\IFilter.cs" />
+    <Compile Include="Models\Filters\GaussianBlurTask.cs" />
+    <Compile Include="Models\Filters\GaussianBlurTaskManager.cs" />
     <Compile Include="Models\Interfaces\IFilterParameters.cs" />
     <Compile Include="Models\Interfaces\IFilterParametersContainer.cs" />
     <Compile Include="Models\Interfaces\IImageLoader.cs" />

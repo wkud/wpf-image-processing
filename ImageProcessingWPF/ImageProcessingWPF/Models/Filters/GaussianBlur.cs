@@ -1,11 +1,10 @@
 ﻿using ImageProcessingWPF.Models.FilterParameters;
-using ImageProcessingWPF.Models.Interfaces;
 using System;
 using System.Drawing;
 
 namespace ImageProcessingWPF.Models.Filters
 {
-    class GaussianBlur : IFilter
+    class GaussianBlur
     {
         private int _kernelWidth;
         private int _kernelHeight;
@@ -17,13 +16,13 @@ namespace ImageProcessingWPF.Models.Filters
         private int _kernelTotalValue;
 
         private Bitmap _input;
-        public Bitmap Execute(IFilterParameters parameters, Bitmap inputImage)
+        public Bitmap Execute(Kernel kernel, Bitmap inputImage, int taskWidth, int taskOffsetX = 0)
         {
-            var kernel = (parameters as Kernel).ToArray();
+            var kernelArray = kernel.ToArray();
             _input = inputImage;
 
-            _kernelWidth = kernel.GetLength(0);
-            _kernelHeight = kernel.GetLength(1);
+            _kernelWidth = kernelArray.GetLength(0);
+            _kernelHeight = kernelArray.GetLength(1);
 
             //offset is slightly larger for even numbers, so center of kernel will be slightly shifted towards right/bottom
             _offsetX = (int)Math.Ceiling((_kernelWidth - 1) / 2.0);
@@ -34,12 +33,12 @@ namespace ImageProcessingWPF.Models.Filters
             {
                 for (int j = 0; j < _kernelHeight; j++)
                 {
-                    _kernelTotalValue += kernel[i, j];
+                    _kernelTotalValue += kernelArray[i, j];
                 }
             }
 
-            Bitmap output = new Bitmap(_input.Width, _input.Height);
-            for (int x = 0; x < _input.Width; x++)
+            Bitmap output = new Bitmap(taskWidth, _input.Height);
+            for (int x = 0; x < taskWidth; x++)
             {
                 for (int y = 0; y < _input.Height; y++)
                 {
@@ -48,10 +47,10 @@ namespace ImageProcessingWPF.Models.Filters
                     {
                         for (int j = 0; j < _kernelHeight; j++)
                         {
-                            var inputColor = GetColor(x, y, i, j);
-                            sum[0] += kernel[i, j] * inputColor.R;
-                            sum[1] += kernel[i, j] * inputColor.G;
-                            sum[2] += kernel[i, j] * inputColor.B;
+                            var inputColor = GetColor(x + taskOffsetX, y, i, j);
+                            sum[0] += kernelArray[i, j] * inputColor.R;
+                            sum[1] += kernelArray[i, j] * inputColor.G;
+                            sum[2] += kernelArray[i, j] * inputColor.B;
                         }
                     }
                     var r = sum[0] / _kernelTotalValue;
@@ -72,7 +71,7 @@ namespace ImageProcessingWPF.Models.Filters
             {
                 return _input.GetPixel(indexX, indexY);
             }
-            catch (ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException) //TODO change edge handling for validators
             {
                 return _input.GetPixel(x, y);
             }

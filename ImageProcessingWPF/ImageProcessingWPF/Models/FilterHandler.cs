@@ -110,7 +110,6 @@ namespace ImageProcessingWPF.Models
 
         public void ExecuteFilter()
         {
-            IFilter filter = CreateFilter();
             if (Parameters is null)
                 Parameters = CreateDefaultParameters();
 
@@ -124,9 +123,10 @@ namespace ImageProcessingWPF.Models
                 var samplingScale = (int)Math.Ceiling(Math.Max(inputImage.Width, inputImage.Height) * 1.0 / SampleCountPerDimension);
                 Task.Run(() =>
                 {
-                    ResultImage = filter.Execute(Parameters, inputImage.ScaleDown(samplingScale))
-                        .ScaleUp(samplingScale)
-                        .ToBitmapImage(ImageFormat.Jpeg);
+                    ResultImage = new GaussianBlurTaskManager(inputImage).UseDownsampling(samplingScale)
+                                                                         .RunAll(Environment.ProcessorCount, _kernel) 
+                                                                         .WaitForResult()
+                                                                         .ToBitmapImage(ImageFormat.Jpeg);
                     IsLoading = false;
                 });
             }
@@ -134,19 +134,11 @@ namespace ImageProcessingWPF.Models
             {
                 Task.Run(() =>
                  {
-                     ResultImage = filter.Execute(Parameters, inputImage)
-                         .ToBitmapImage(ImageFormat.Jpeg);
+                     ResultImage = new AdaptiveThresholding().Execute(_thresholdingParameters, inputImage)
+                                                             .ToBitmapImage(ImageFormat.Jpeg);
                      IsLoading = false;
                  });
             }
-        }
-
-        private IFilter CreateFilter()
-        {
-            if (_selectedFilterType == FilterType.GaussianBlur)
-                return new GaussianBlur();
-            else
-                return new AdaptiveThresholding();
         }
 
         private IFilterParameters CreateDefaultParameters()

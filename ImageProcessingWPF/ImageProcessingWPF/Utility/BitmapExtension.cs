@@ -49,6 +49,12 @@ namespace ImageProcessingWPF.Utility
             int width = (int)(image.Width * scale);
             return new Bitmap(image, width, height);
         }
+
+        public static Bitmap Copy(this Bitmap image)
+        {
+            return new Bitmap(image);
+        }
+
         public static int[,] ToIntensityArray(this Bitmap image)
         {
             var grayArray = new int[image.Width, image.Height];

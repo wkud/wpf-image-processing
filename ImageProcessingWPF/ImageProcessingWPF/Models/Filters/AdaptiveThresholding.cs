@@ -1,12 +1,11 @@
 ﻿using ImageProcessingWPF.Models.FilterParameters;
-using ImageProcessingWPF.Models.Interfaces;
 using ImageProcessingWPF.Utility;
 using ImageProcessingWPF.Utility.Validators;
 using System.Drawing;
 
 namespace ImageProcessingWPF.Models.Filters
 {
-    class AdaptiveThresholding : IFilter
+    class AdaptiveThresholding 
     {
         private int[,] _integralImage;
 
@@ -19,11 +18,10 @@ namespace ImageProcessingWPF.Models.Filters
             y = _indexValidatorY.MakeValid(y);
             return _integralImage[x, y];
         }
-        public Bitmap Execute(IFilterParameters parameters, Bitmap inputImage)
+        public Bitmap Execute(ThresholdingParameters parameters, Bitmap inputImage)
         {
-            var thresholdingParameters = parameters as ThresholdingParameters;
-            var halfOfAreaSize = thresholdingParameters.MeanAreaSize / 2;
-            var inversedDeviationPercent = 1 - thresholdingParameters.MaxDeviation;
+            var halfOfAreaSize = parameters.MeanAreaSize / 2;
+            var inversedDeviationPercent = 1 - parameters.MaxDeviation;
 
             var grayInput = inputImage.ToIntensityArray();
 
