@@ -12,7 +12,7 @@ namespace ImageProcessingWPF.ViewModels
         private IValidator<double> _percentValidator = new IsPercentValidator();
         private IValidator<int> _rangeValidator = new IsWithinRangeValidator(2, 20);
 
-        private double _maxDeviation;
+        private double _maxDeviation = 0.15;
         public string MaxDeviation
         {
             get { return _maxDeviation.ToString(CultureInfo.InvariantCulture); }
@@ -24,7 +24,7 @@ namespace ImageProcessingWPF.ViewModels
             }
         }
 
-        private int _meanAreaSize;
+        private int _meanAreaSize = 20;
         public string MeanAreaSize
         {
             get { return _meanAreaSize.ToString(); }

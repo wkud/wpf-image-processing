@@ -49,5 +49,18 @@ namespace ImageProcessingWPF.Utility
             int width = (int)(image.Width * scale);
             return new Bitmap(image, width, height);
         }
+        public static int[,] ToIntensityArray(this Bitmap image)
+        {
+            var grayArray = new int[image.Width, image.Height];
+            for (int x = 0; x < image.Width; x++)
+            {
+                for (int y = 0; y < image.Height; y++)
+                {
+                    var color = image.GetPixel(x, y);
+                    grayArray[x, y] = color.R + color.G + color.B / 3;
+                }
+            }
+            return grayArray;
+        }
     }
 }
