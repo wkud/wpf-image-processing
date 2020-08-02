@@ -1,45 +1,23 @@
 ﻿using ImageProcessingWPF.Models.FilterParameters;
 using ImageProcessingWPF.Models.Interfaces;
 using ImageProcessingWPF.Utility;
-using System;
+using ImageProcessingWPF.Utility.Validators;
 using System.Drawing;
 
 namespace ImageProcessingWPF.Models.Filters
 {
     class AdaptiveThresholding : IFilter
     {
-        enum CornerType
-        {
-            TopLeft,
-            TopRight,
-            BottomLeft,
-            BottomRight,
-        }
         private int[,] _integralImage;
-        private int _width;
-        private int _height;
-        private int GetIntegralImageValue(int x, int y, CornerType closestArrayCorner)
+
+        private IValidator<int> _indexValidatorX;
+        private IValidator<int> _indexValidatorY;
+
+        private int GetIntegralImageValue(int x, int y)
         {
-            try
-            {
-                return _integralImage[x, y];
-            }
-            catch(IndexOutOfRangeException)
-            {
-                switch (closestArrayCorner)
-                {
-                    case CornerType.TopLeft:
-                        return _integralImage[0, 0];
-                    case CornerType.TopRight:
-                        return _integralImage[_width - 1, 0];
-                    case CornerType.BottomLeft:
-                        return _integralImage[0, _height - 1];
-                    case CornerType.BottomRight:
-                        return _integralImage[_width - 1, _height - 1];
-                    default:
-                        throw new ArgumentException("Unhandled CornerType argument");
-                }
-            }
+            x = _indexValidatorX.MakeValid(x);
+            y = _indexValidatorY.MakeValid(y);
+            return _integralImage[x, y];
         }
         public Bitmap Execute(IFilterParameters parameters, Bitmap inputImage)
         {
@@ -49,14 +27,14 @@ namespace ImageProcessingWPF.Models.Filters
 
             var grayInput = inputImage.ToIntensityArray();
 
-            _width = inputImage.Width;
-            _height = inputImage.Height;
+            _indexValidatorX = new IsWithinRangeValidator(0, inputImage.Width - 1);
+            _indexValidatorY = new IsWithinRangeValidator(0, inputImage.Height - 1);
 
-            _integralImage = new int[_width, _height];
-            for (int i = 0; i < _width; i++)
+            _integralImage = new int[inputImage.Width, inputImage.Height];
+            for (int i = 0; i < inputImage.Width; i++)
             {
                 var sum = 0;
-                for (int j = 0; j < _height; j++)
+                for (int j = 0; j < inputImage.Height; j++)
                 {
                     sum += grayInput[i, j];
                     if (i == 0)
@@ -66,10 +44,10 @@ namespace ImageProcessingWPF.Models.Filters
                 }
             }
 
-            var outputImage = new Bitmap(_width, _height);
-            for (int i = 0; i < _width; i++)
+            var outputImage = new Bitmap(inputImage.Width, inputImage.Height);
+            for (int i = 0; i < inputImage.Width; i++)
             {
-                for (int j = 0; j < _height; j++)
+                for (int j = 0; j < inputImage.Height; j++)
                 {
                     var startX = i - halfOfAreaSize;
                     var endX = i + halfOfAreaSize;
@@ -77,10 +55,10 @@ namespace ImageProcessingWPF.Models.Filters
                     var endY = j + halfOfAreaSize;
 
                     var count = (endX - startX) * (endY - startY);
-                    var sum = GetIntegralImageValue(endX, endY, CornerType.BottomRight) 
-                        - GetIntegralImageValue(endX, startY - 1, CornerType.TopRight) 
-                        - GetIntegralImageValue(startX - 1, endY, CornerType.BottomLeft) 
-                        + GetIntegralImageValue(startX - 1, startY - 1, CornerType.TopLeft); 
+                    var sum = GetIntegralImageValue(endX, endY)
+                        - GetIntegralImageValue(endX, startY - 1)
+                        - GetIntegralImageValue(startX - 1, endY)
+                        + GetIntegralImageValue(startX - 1, startY - 1);
                     if (grayInput[i, j] * count <= sum * inversedDeviationPercent)
                     {
                         outputImage.SetPixel(i, j, Color.Black);

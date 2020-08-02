@@ -58,8 +58,8 @@ namespace ImageProcessingWPF.Models
             set
             {
                 _isLoading = value;
-                PropertyChanged.Notify(this, "IsLoading"); 
-                PropertyChanged.Notify(this, "ExecuteFilterCommand"); 
+                PropertyChanged.Notify(this, "IsLoading");
+                PropertyChanged.Notify(this, "ExecuteFilterCommand");
             }
         }
 
@@ -115,17 +115,30 @@ namespace ImageProcessingWPF.Models
                 Parameters = CreateDefaultParameters();
 
             ResultImage = null;
-
             IsLoading = true;
+
             var inputImage = _imageloader.LoadedImage.ToBitmap();
-            var samplingScale = (int)Math.Ceiling(Math.Max(inputImage.Width, inputImage.Height) * 1.0 / SampleCountPerDimension);
-            Task.Run(() =>
+            
+            if (SelectedFilterType == FilterType.GaussianBlur)
             {
-                ResultImage = filter.Execute(Parameters, inputImage.ScaleDown(samplingScale))
-                    .ScaleUp(samplingScale)
-                    .ToBitmapImage(ImageFormat.Jpeg);
-                IsLoading = false;
-            });
+                var samplingScale = (int)Math.Ceiling(Math.Max(inputImage.Width, inputImage.Height) * 1.0 / SampleCountPerDimension);
+                Task.Run(() =>
+                {
+                    ResultImage = filter.Execute(Parameters, inputImage.ScaleDown(samplingScale))
+                        .ScaleUp(samplingScale)
+                        .ToBitmapImage(ImageFormat.Jpeg);
+                    IsLoading = false;
+                });
+            }
+            else
+            {
+                Task.Run(() =>
+                 {
+                     ResultImage = filter.Execute(Parameters, inputImage)
+                         .ToBitmapImage(ImageFormat.Jpeg);
+                     IsLoading = false;
+                 });
+            }
         }
 
         private IFilter CreateFilter()

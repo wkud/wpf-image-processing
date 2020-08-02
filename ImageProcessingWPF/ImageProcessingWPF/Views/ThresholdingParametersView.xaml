@@ -7,10 +7,10 @@
              mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
         <TextBlock Text="max deviation: "/>
-        <TextBox Width="30" Height="30" FontSize="18" Margin="0,2.5,5,0"
+        <TextBox Width="40" Height="30" FontSize="18" Margin="0,2.5,5,0"
                  Text="{Binding MaxDeviation}"/>
         <TextBlock Text="mean area size: "/>
-        <TextBox Width="30" Height="30" FontSize="18" Margin="0,2.5,0,0"
+        <TextBox Width="40" Height="30" FontSize="18" Margin="0,2.5,5,0"
                  Text="{Binding MeanAreaSize}"/>
     </StackPanel>
 </UserControl>

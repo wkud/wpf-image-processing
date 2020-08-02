@@ -68,6 +68,7 @@
     <Compile Include="Models\FilterParameters\Kernel.cs" />
     <Compile Include="Models\KernelSerializer.cs" />
     <Compile Include="Utility\BitmapExtension.cs" />
+    <Compile Include="Utility\Validators\IsEqualOrGreaterValidator.cs" />
     <Compile Include="Utility\Validators\IsPercentValidator.cs" />
     <Compile Include="Utility\Validators\IValidator.cs" />
     <Compile Include="Utility\Validators\IsWithinRangeValidator.cs" />

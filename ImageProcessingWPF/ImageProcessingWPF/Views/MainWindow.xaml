@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:ImageProcessingWPF.Views"
         mc:Ignorable="d" 
         WindowStartupLocation="CenterScreen"
-        Title="Image Processing Application" Height="450" Width="830">
+        Title="Image Processing Application" Height="450" Width="850">
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -63,14 +63,17 @@
             </StackPanel>
             <Image Source="{Binding FilterHandler.ResultImage}" Grid.Column="2"/>
         </Grid>
-
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="Quality:"/>
-        <Slider Grid.Row="4" Grid.Column="2" VerticalAlignment="Center"
+        
+        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal"
+                    Visibility="{Binding KernelBarViewModel.IsVisible, Converter={StaticResource BooleanToVisibility}, FallbackValue=Visible}">
+            <TextBlock Text="Quality:" Margin="0,0,5,0"/>
+            <Slider VerticalAlignment="Bottom" Width="150"
                 Value="{Binding FilterHandler.SampleCountPerDimension}" x:Name="sampleSlider"
                 Minimum="100" Maximum="1000" TickFrequency="100" 
                 IsSnapToTickEnabled="True" TickPlacement="BottomRight"/>
-        <TextBlock Grid.Row="4" Grid.Column="3" Margin="5" Text="{Binding FilterHandler.TotalSampleCount}"/>
-        
+            <TextBlock Margin="5" Text="{Binding FilterHandler.TotalSampleCount, FallbackValue='10000 samples'}"/>
+        </StackPanel>
+
         <Button Grid.Row="4" Grid.Column="5" Content="Save Result" Command="{Binding ImageSaver.SaveResultImageToFileCommand}"/>
     </Grid>
 </Window>
