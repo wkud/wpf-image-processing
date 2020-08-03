@@ -77,6 +77,9 @@ namespace ImageProcessingWPF.Models
             }
         }
 
+
+        public event Action OnParametersChanged;
+
         private Kernel _kernel;
         private ThresholdingParameters _thresholdingParameters;
         public IFilterParameters Parameters
@@ -94,6 +97,7 @@ namespace ImageProcessingWPF.Models
                     _kernel = value as Kernel;
                 else if (value is ThresholdingParameters)
                     _thresholdingParameters = value as ThresholdingParameters;
+                OnParametersChanged.Invoke();
             }
         }
 

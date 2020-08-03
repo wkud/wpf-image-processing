@@ -33,5 +33,10 @@ namespace ImageProcessingWPF.ViewModels
         {
             IsVisible = value == _associatedFilterType;
         }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged.Notify(this, propertyName);
+        }
     }
 }

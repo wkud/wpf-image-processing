@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <StackPanel Orientation="Horizontal">
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Kernel: "/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="(kernel size)"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding KernelSize}"/>
         <Button Grid.Row="0" Grid.Column="2" Content="Manage Kernel" Command="{Binding ManageKernelCommand}" Margin="10,0,0,0"/>
     </StackPanel>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using ImageProcessingWPF.Models;
+using ImageProcessingWPF.Models.FilterParameters;
 using ImageProcessingWPF.Models.Interfaces;
 using ImageProcessingWPF.ViewModels.Commands;
 using ImageProcessingWPF.Views;
@@ -10,6 +11,8 @@ namespace ImageProcessingWPF.ViewModels
     {
         public ICommand ManageKernelCommand => new ManageKernelCommand(OpenKernelDialogWindow);
 
+        public string KernelSize => _parametersContainer.Parameters is null ? "(size: 3x3)" : $"(size: {(_parametersContainer.Parameters as Kernel).Width}x{(_parametersContainer.Parameters as Kernel).Height})";
+
         private IFilterParametersContainer _parametersContainer;
         private MainWindow _mainWindow;
 
@@ -18,6 +21,8 @@ namespace ImageProcessingWPF.ViewModels
         {
             _mainWindow = mainWindow;
             _parametersContainer = filterHandler;
+
+            _parametersContainer.OnParametersChanged += () => OnPropertyChanged("KernelSize");
         }
 
         private void OpenKernelDialogWindow()
